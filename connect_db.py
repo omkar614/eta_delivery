@@ -2,13 +2,17 @@ import pandas as pd
 import psycopg2
 from sqlalchemy import create_engine
 from urllib.parse import quote_plus
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
 
-username = 'postgres'
-password = quote_plus('sawantomkar@') 
-host = '127.0.0.1'
-port = '5433'
-database ='delivery_analysis'
+
+username = os.getenv('username')
+password = quote_plus(os.getenv('password'))
+host = os.getenv('host')
+port = os.getenv('port')
+database = os.getenv('database')
 
 engine = create_engine(f"postgresql+psycopg2://{username}:{password}@{host}:{port}/{database}")
 
